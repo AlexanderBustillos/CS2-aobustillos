@@ -14,13 +14,13 @@ int main(int argc, char* argv[])
     {
         cout<<"-------------------------"<< endl;
 
-        cout<<"[1]Add Movies"<<endl;
-        cout<< "[2]Delete Movies"<< endl;
-        cout<< "[3]Print Current Movies"<<endl;
-        cout<< "[4]Search for Movies"<<endl;
-        cout<< "[5]Write data to csv"<<endl;
-        cout<< "[6]Read a file"<< endl;
-        cout<< "[7]Stop running"<<endl;
+        cout<<"|"<< "[1]Add Movies"<< setw(11)<< "|"<<endl;
+        cout<<"|"<< "[2]Delete Movies"<< setw(8)<<"|"<<endl;
+        cout<<"|"<< "[3]Print Current Movies"<<"|"<< endl;
+        cout<<"|"<< "[4]Search for Movies"<< setw(4)<<"|"<<endl;
+        cout<<"|"<< "[5]Write data to csv"<< setw(4)<<"|"<<endl;
+        cout<<"|"<< "[6]Read a file"<< setw(10)<<"|"<<endl;
+        cout<<"|"<< "[7]Stop running"<< setw(9)<<"|"<< endl;
         cout<<"-------------------------"<< endl;
 
         cin >> options;

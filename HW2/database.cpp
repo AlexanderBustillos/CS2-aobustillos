@@ -148,7 +148,7 @@ void databases::database::addMovie()
 {
     
     string tmp;
-    cout << "Enter movie data in order of, ID TITLE YEAR GENRE DIRECTOR: "<< endl;
+    cout << "Enter movie data in order of, ID , TITLE, YEAR , GENRE, DIRECTOR: "<< endl;
     cin >> tmp;
     movieList[arrSize]->setId(tmp);
     cin >> tmp;
@@ -191,18 +191,18 @@ void databases::database::removeMovie()
 void databases::database::searchMovies()
 {   
     int answer;
-    string movieTitle = "";
+    string movieID = "";
     string movieGenre = "";
-    cout << "Search movie by Tile[1] or Genre[2]? "<<endl;
+    cout << "Search movie by ID[1] or Genre[2]? "<<endl;
     cin >> answer;
     if (answer == 1)
     {
-        cout << "What is the Title?"<< endl;
-        cin >> movieTitle;
+        cout << "What is the ID?"<< endl;
+        cin >> movieID;
         cout <<"ID"<<setw(13)<<"Title"<<setw(60)<<"Year"<< setw(7)<< "Genre"<< setw(19)<< "Director"<< endl;
         for(int i = 0; i < arrSize; i++)
         {
-            if(movieList[i]->getTitle()== movieTitle)
+            if(movieList[i]->getId()== movieID)
             {
                 cout << left << setw(9) << movieList[i]->getId()<<" "
                 <<setw(60) << movieList[i]->getTitle()<<" " 
