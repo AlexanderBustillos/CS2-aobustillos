@@ -41,6 +41,7 @@ namespace databases
         void removeMovie();
         void searchMovies();
         void transferData();
+        void freemem();
 
     };
 };

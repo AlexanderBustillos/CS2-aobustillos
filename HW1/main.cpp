@@ -54,6 +54,10 @@ int main(int argc, char* argv[])
 
 
     }
+    if (options == 7)
+    {
+        Mydatabase.freemem();
+    }
     
     return 0;
 }

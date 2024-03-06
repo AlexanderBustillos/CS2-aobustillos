@@ -77,6 +77,13 @@ void databases::database::initmovies()
         movieList[i] = newmovie;
     }
 }
+void databases::database::freemem()
+{
+    for (int i = 0; i < 99; i++)
+    {
+        delete movieList[i];
+    }
+}
 void databases::database::readFile()
 {
     string filename = "";
