@@ -13,3 +13,7 @@ HW1 Movie Database
 (
 This project is designed to help us learn how arrays can be used alongside classes to store and modify datat, then homework helped me understand how to properly use classes and search through an array of pointers that point to a class that houses a lot of information. This database has a UI to help navigate what the user wants to do with a file full of information, you can add and delete movies one by one and can print the movies, and even search the entire movie list for a speific movie or genre of movies, and even make a csv file and print out the movie list to the file. I think I built this project very well and its almost beautiful how well it works and deserves a 100/100.
 )
+Lab3 Fraction Calculator
+{
+This Lab was very fun, it was easy once you understand how to access the fractions and which fraction numerator and denominator is which, once you grasp the concept making the calculator is very easy and its simple, this project helped me understand even more on how to access functions of sepcific class types. The project was also cool because of the override functions, the cout statements and the + - being changed to be a function was very interesting. This fraction calculator lets you input two fractions and then ouputs the two fractions added, subtracted, multplied and divided, all the test cases pass and the code is a little rough but it works well and is very easy to read, meaning i deserve a 100/100.
+}

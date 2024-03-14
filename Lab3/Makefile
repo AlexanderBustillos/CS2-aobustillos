@@ -13,7 +13,7 @@ CXXFLAGS = -c -g -Wall -std=c++17
 PROGRAM = main.out
 
 # list all .cpp files separated by space
-CPPFILES = test.cpp
+CPPFILES = main.cpp fractions.cpp
 
 # make all rule/default rule that'll be run when we run "make"
 # first compile each file to object file
@@ -31,3 +31,6 @@ clean:
 # Add a rule to run the program
 run:
 	./$(PROGRAM)
+
+test:
+	./$(PROGRAM) test

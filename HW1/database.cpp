@@ -1,6 +1,7 @@
 #include "database.h"
 #include "movie.h"
 
+#include <iomanip>
 #include <iostream>
 #include <fstream>
 #include <string>
@@ -72,16 +73,16 @@ void databases::database::setdb_id(string newdb_id)
 //I am just setting every movie in the array to a new movie/giving it memory to work off of
 void databases::database::initmovies()
 {
-    for (int i = 0; i < 99; i++)
+    for (int i = 0; i < 100; i++)
     {
-        movies::movie *newmovie = new movies::movie;
-        movieList[i] = newmovie;
+        // movies::movie *newmovie = new movies::movie;
+        movieList[i] = nullptr;
     }
 }
 // Once the user exits the loop this fucntion is called that deletes every movie list and frees the memory that the code initially created
 void databases::database::freemem()
 {
-    for (int i = 0; i < 99; i++)
+    for (int i = 0; i < arrSize; i++)
     {
         delete movieList[i];
     }
@@ -102,10 +103,14 @@ void databases::database::readFile()
     string line = "";
     //This counts the rows in the csv, meaning the i variable will technically be column counter, it is set to arrSize because arrSize is 0 and this is how
     //it knows how much data we are currently holding in our movielist
-    int rowCounter = arrSize;
+    int rowCounter = 0;
     // While we are reading the file and putting it into line
     while (getline(input, line))
     {
+        // movies::movie* tmpmovie;
+        // tmpmovie = new movies::movie;
+        // while we read in the file we are allocating new memory for movies
+        movieList[rowCounter]= new movies::movie;
         // column counter
         int i = 0;
         // string stream is neccessary in order to parse the csv file and extract the data properly
@@ -204,19 +209,19 @@ void databases::database::removeMovie()
     {
         if(movieList[i]->getId() == movieID)
         {
+            delete movieList[i];
             //I am going through the list starting at the point where we found where the id from the user is equal to the id from the movie list
             // i am going through arrsize-1 because i am subtracting a movie
             for (int j = i; j <= arrSize-1; j++)
             {
                 //I am moving all the movies up by one instead of directly deleting the movie 
-                movieList[j] = movieList[j+1];
-
-                // movieList[j]->getId() = movieList[j+1]->getId();
-                // movieList[j]->getTitle() = movieList[j+1]->getTitle();
-                // movieList[j]->getYear() = movieList[j+1]->getYear();
-                // movieList[j]->getGenre() = movieList[j+1]->getGenre();
-                // movieList[j]->getDirector() = movieList[j+1]->getDirector();
-
+                while(movieList[i]!= nullptr)
+                {
+                    movieList[j] = movieList[j+1];
+                
+                }
+                movieList[i] = nullptr;
+                break;
             }
             //arrSize is now one less
         arrSize = arrSize - 1;

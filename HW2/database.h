@@ -1,4 +1,5 @@
 #pragma once
+#include "media.h"
 #include "movie.h"
 #include <cmath>
 #include <iostream>
@@ -15,6 +16,9 @@ namespace databases
         string name;
         string db_id;
         movies::movie* movieList[100];
+        tvshows::tvshow* tvshowList[100];
+        musics::music* musicList[100];
+        
     public:
         //constuctor
         database(string = "", string = "");
@@ -41,6 +45,7 @@ namespace databases
         void removeMovie();
         void searchMovies();
         void transferData();
+        void freemem();
 
     };
 };
