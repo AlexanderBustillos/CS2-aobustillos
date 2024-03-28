@@ -1,5 +1,4 @@
 #pragma once
-#include "movie.h"
 #include <cmath>
 #include <iostream>
 
@@ -21,7 +20,7 @@ namespace medias
             media(string = "", string = "", string = "", string = "");
 
             //destructor
-            ~media();
+            virtual ~media();
 
             //Getters
             string getId();
@@ -35,6 +34,7 @@ namespace medias
             void setTitle(string);
             void setYear(string);
             void setGenre(string);
-            
+
+            //functions
     };
-};
+}

@@ -18,6 +18,10 @@ medias::media::media(string _id, string _title, string _year, string _genre)
     this->genre = _genre;
    
 }
+medias::media::~media()
+{
+    
+}
 //Getters
 string medias::media::getId()
 {

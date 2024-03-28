@@ -17,10 +17,10 @@ int main(int argc, char* argv[])
     {
         //Menu
         cout<<"-------------------------"<< endl;
-        cout<<"[1]Add Movies"<<endl;
-        cout<< "[2]Delete Movies"<< endl;
-        cout<< "[3]Print Current Movies"<<endl;
-        cout<< "[4]Search for Movies"<<endl;
+        cout<<"[1]Add Media"<<endl;
+        cout<< "[2]Delete Media"<< endl;
+        cout<< "[3]Print Current Media"<<endl;
+        cout<< "[4]Search for Media"<<endl;
         cout<< "[5]Write data to csv"<<endl;
         cout<< "[6]Read a file"<< endl;
         cout<< "[7]Stop running"<<endl;
@@ -30,21 +30,21 @@ int main(int argc, char* argv[])
         // whatever the user chooses it calls the functions then restarts the loop
         if(options == 1)
         {  
-            Mydatabase.addMovie();
+            Mydatabase.addMedia();
         }
         if(options == 2)
         {
-            Mydatabase.removeMovie();
+            Mydatabase.removeMedia();
 
         }
         if(options == 3)
         {
-            Mydatabase.printMovies();
+            Mydatabase.printMedia();
 
         }
         if(options == 4)
         {
-            Mydatabase.searchMovies();
+            Mydatabase.searchMedia();
         }
         if(options == 5)
         {

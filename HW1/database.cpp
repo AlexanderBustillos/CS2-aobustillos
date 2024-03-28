@@ -1,5 +1,5 @@
 #include "database.h"
-#include "movie.h"
+// #include "movie.h"
 
 #include <iomanip>
 #include <iostream>
@@ -183,6 +183,7 @@ void databases::database::addMovie()
 {
     // asking the user to properly enter the info then making a tmp variable to add to the movieList properly
     string tmp;
+    movieList[arrSize]= new movies::movie;
     cout << "Enter movie data in order of, ID TITLE YEAR GENRE DIRECTOR: "<< endl;
     cin >> tmp;
     movieList[arrSize]->setId(tmp);
