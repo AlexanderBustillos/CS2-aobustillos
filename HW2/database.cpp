@@ -82,14 +82,14 @@ void databases::database::freemem()
 void databases::database::readFile()
 {
     // I set the filename equal to nothing, it doesnt matter because its going to be replaced anyway
-    string filenameMovie = "";
-    string filenameTvshow = "";
-    string filenameMusic = "";
+    string filenameMovie = "movies.csv";
+    string filenameTvshow = "tvshows.csv";
+    string filenameMusic = "music.csv";
     // ifstrema is going to be called with input
     ifstream input;
     // I get the filename
-    cout << "What is the filename in order?(movie,tvshow,music)?" << endl;
-    cin >> filenameMovie >> filenameTvshow >> filenameMusic;
+    // cout << "What is the filename in order?(movie,tvshow,music)?" << endl;
+    // cin >> filenameMovie >> filenameTvshow >> filenameMusic;
     // I then open the filename with ifstream
     input.open(filenameMovie);
     // a new string that is equl to nothing
@@ -333,7 +333,8 @@ void databases::database::addMedia()
         cout << "Enter movie data in order of, ID TITLE YEAR GENRE DIRECTOR: " << endl;
         cin >> tmp;
         movieList[movieArrSize]->setId(tmp);
-        cin >> tmp;
+        cin.ignore();
+        getline(cin, tmp);
         movieList[movieArrSize]->setTitle(tmp);
         cin >> tmp;
         movieList[movieArrSize]->setYear(tmp);
@@ -341,7 +342,8 @@ void databases::database::addMedia()
         movieList[movieArrSize]->setGenre(tmp);
         cin >> tmp;
         movieList[movieArrSize]->setRating(tmp);
-        cin >> tmp;
+        cin.ignore();
+        getline(cin, tmp);
         movieList[movieArrSize]->setDirector(tmp);
         movieArrSize++;
     }
@@ -352,7 +354,8 @@ void databases::database::addMedia()
         cout << "Enter tvshow data in order of, ID TITLE YEAR GENRE RATING NUMEPISODES: " << endl;
         cin >> tmp;
         tvshowList[tvshowArrSize]->setId(tmp);
-        cin >> tmp;
+        cin.ignore();
+        getline(cin, tmp);
         tvshowList[tvshowArrSize]->setTitle(tmp);
         cin >> tmp;
         tvshowList[tvshowArrSize]->setYear(tmp);
@@ -371,13 +374,15 @@ void databases::database::addMedia()
         cout << "Enter music data in order of, ID TITLE YEAR GENRE COMPOSER NUMTRACKS TOTALPLAYTIME: " << endl;
         cin >> tmp;
         musicList[musicArrSize]->setId(tmp);
-        cin >> tmp;
+        cin.ignore();
+        getline(cin, tmp);
         musicList[musicArrSize]->setTitle(tmp);
         cin >> tmp;
         musicList[musicArrSize]->setYear(tmp);
         cin >> tmp;
         musicList[musicArrSize]->setGenre(tmp);
-        cin >> tmp;
+        cin.ignore();
+        getline(cin, tmp);
         musicList[musicArrSize]->setComposer(tmp);
         cin >> tmp;
         musicList[musicArrSize]->setNumTracks(tmp);
@@ -389,11 +394,11 @@ void databases::database::addMedia()
 // removing an individual movie
 void databases::database::removeMedia()
 {
-    string ID = 0;
+    string ID;
     cout << "What is the ID" << endl;
     cin >> ID;
-
-    for (int i = 0; i <= movieArrSize; i++)
+    cout << "DEBUG "<< ID << endl;
+    for (int i = 0; i < movieArrSize; i++)
     {
         if (movieList[i]->getId() == ID)
         {
@@ -415,8 +420,9 @@ void databases::database::removeMedia()
             // cout <<"DEBUG: "<< arrSize << endl;
         }
     }
-    for (int i = 0; i <= tvshowArrSize; i++)
+    for (int i = 0; i < tvshowArrSize; i++)
     {
+        cout << "In tvshow Loop"<<endl;
         if (tvshowList[i]->getId() == ID)
         {
             delete tvshowList[i];
@@ -425,19 +431,17 @@ void databases::database::removeMedia()
             for (int j = i; j <= tvshowArrSize - 1; j++)
             {
                 // I am moving all the movies up by one instead of directly deleting the movie
-                while (tvshowList[i] != nullptr)
-                {
-                    tvshowList[j] = tvshowList[j + 1];
-                }
-                tvshowList[i] = nullptr;
-                break;
+                cout << "Inside while loop" << endl;
+                tvshowList[j] = tvshowList[j + 1];
+                
             }
             // arrSize is now one less
             tvshowArrSize = tvshowArrSize - 1;
             // cout <<"DEBUG: "<< arrSize << endl;
         }
     }
-    for (int i = 0; i <= musicArrSize; i++)
+    cout <<"out of loops"<< endl;
+    for (int i = 0; i < musicArrSize; i++)
     {
         if (musicList[i]->getId() == ID)
         {
@@ -474,7 +478,8 @@ void databases::database::searchMedia()
     {
         // ask for the title
         cout << "What is the Title?" << endl;
-        cin >> mediaTitle;
+        cin.ignore();
+        getline(cin, mediaTitle);
         // menu
         cout << "ID" << setw(13) << "Title" << setw(60) << "Year" << setw(7) << "Genre" << setw(19) << "Director" << endl;
         // going through the movielist looking for the movie that matches the name

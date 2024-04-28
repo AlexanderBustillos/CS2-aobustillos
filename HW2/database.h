@@ -14,9 +14,9 @@ namespace databases
     class database
     {
     private:
-        int movieArrSize;
-        int tvshowArrSize;
-        int musicArrSize;
+        int movieArrSize = 0;
+        int tvshowArrSize = 0;
+        int musicArrSize = 0;
         string name;
         string db_id;
         movies::movie* movieList[100];
