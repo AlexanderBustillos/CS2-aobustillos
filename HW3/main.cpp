@@ -1,4 +1,4 @@
-
+#include <cassert>
 #include <iostream>
 #include <string>
 #include <sstream>
@@ -15,7 +15,7 @@ double evaluateRPN(string expression)
     
     while (ss >> line)
     {
-        //for this if statment i used chat GPT to tell me how to tell if the input is a number of its a symbol and to set it to a double to be added together properly/
+        //for this if statment i used chat GPT to tell me how to tell if the input is a number of its a symbol and to set it to a double to be added together properly
         if (isdigit(line[0]) || (line.size() > 1 && line[0] == '-' && isdigit(line[1])))
         {
             double number = stod(line); 
@@ -68,6 +68,16 @@ double evaluateRPN(string expression)
 
 int main(int argc, char *argv[])
 {
+    void tests();
+    {
+       assert(evaluateRPN("3 4 + 5 6 - *") == 18);
+    cout << "All tests passed!" << endl;
+    }
+    if(argc == 2 && (string)argv[1] == "test")
+    {
+        tests();
+        return 0;
+    }
     string inputline;
     cout << "Enter String to Parse: ";
     getline(cin,inputline);

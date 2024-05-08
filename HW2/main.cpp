@@ -8,6 +8,7 @@ using namespace std;
 
 int main(int argc, char* argv[])
 {
+
     //in order to make a menu i will make a options setting so the user can choose what they want to do
     int options = 0;
     //I am creating a database to be able to use all the functions that have access to variables from database
