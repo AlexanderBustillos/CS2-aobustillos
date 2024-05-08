@@ -45,22 +45,26 @@ List<T1>::List()
 template <class T1>
 List<T1>::~List()
 {
-    while (_head->getNext() != nullptr)
+    Node<T1>* current = _head;
+    while (current != nullptr) 
     {
-
-        _head= _head->getNext();
-        delete _head->getPrev();
-
+        Node<T1>* next = current->getNext(); 
+        delete current;
+        current = next; 
+        if (current != nullptr) {
+            current->setPrev(nullptr); 
+        }
+        listSize--;
     }
-    
 }
 
 // return true if the list is empty, false otherwise.
 // Do not just check listSize, should actually check _head and _tail
 template <class T1>
 bool List<T1>::empty()
-{
-return(_head == nullptr && listSize == 0 && _tail == nullptr);
+{ 
+//  cout<< "head:"<<_head<<"listsize:"<< listSize <<"tail" << _tail<<endl;
+    return(_head == nullptr && listSize == 0 && _tail == nullptr);
 }
 
 // return number of elements in list
@@ -89,6 +93,8 @@ void List<T1>::push_front(T1 data)
     {
         _head = newNode;
         _tail = newNode;
+        listSize++;
+        return;
     }
         newNode->setNext(_head);
         _head->setPrev(newNode);
@@ -129,6 +135,10 @@ T1 List<T1>::pop_front()
     if (_head != nullptr) {
         _head->setPrev(nullptr);
     } 
+    else if ( _head == nullptr)
+    {
+        _tail = nullptr;
+    }
     delete oldHead;  
     listSize--;
     return data;  
@@ -144,6 +154,8 @@ void List<T1>::push_back(T1 data)
     {
         _head = newNode;
         _tail = newNode;
+        listSize++;
+        return;
     }
         newNode->setPrev(_tail);
         _tail->setNext(newNode);
@@ -183,6 +195,10 @@ T1 List<T1>::pop_back()
     _tail = _tail->getPrev(); 
     if (_tail != nullptr) {
         _tail->setNext(nullptr); 
+    }
+    if(_tail == nullptr)
+    {
+        _head = nullptr;
     }
     delete oldTail;
     listSize--;

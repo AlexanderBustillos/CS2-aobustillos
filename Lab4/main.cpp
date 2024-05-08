@@ -44,6 +44,7 @@ void test()
 {
     List<int> testList1;
     size_t listSize = 10;
+    cout << "DEBUG: " << testList1.empty() << endl;
     for(size_t i = 0; i < listSize; i++)
     {
         testList1.push_back(i*42);
