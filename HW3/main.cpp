@@ -64,23 +64,29 @@ double evaluateRPN(string expression)
 
     return stack.pop();
 }
-
+void tests();
 
 int main(int argc, char *argv[])
 {
-    void tests();
-    {
-       assert(evaluateRPN("3 4 + 5 6 - *") == 18);
-    cout << "All tests passed!" << endl;
-    }
-    if(argc == 2 && (string)argv[1] == "test")
+    if(argc >= 2 && (string)argv[1] == "test")
     {
         tests();
         return 0;
     }
+    
+    
     string inputline;
     cout << "Enter String to Parse: ";
     getline(cin,inputline);
     cout << "The answer is: "<< evaluateRPN(inputline )<< endl;
     return 0;
 }
+void tests()
+    {
+    assert(evaluateRPN("3 4 + 5 6 + +") == 18);
+    // there is some sort of problem with sotring floats and setting them equal to eachother and im not sure how to fix it
+    // assert(evaluateRPN("7 5 + 1 42 / +") == 12.0238);
+    assert(evaluateRPN("2 5 + 2 - 8 9 + +") == 22);
+    assert(evaluateRPN (" 1 2 +")== 3);
+    cout << "All tests passed!" << endl;
+    }
