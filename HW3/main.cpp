@@ -3,6 +3,7 @@
 #include <string>
 #include <sstream>
 #include "stack.h"
+#include <cmath>
 
 using namespace std;
 
@@ -85,7 +86,7 @@ void tests()
     {
     assert(evaluateRPN("3 4 + 5 6 + +") == 18);
     // there is some sort of problem with sotring floats and setting them equal to eachother and im not sure how to fix it
-    // assert(evaluateRPN("7 5 + 1 42 / +") == 12.0238);
+    assert(abs(evaluateRPN("7 5 + 1 42 / +") - 12.0238) <= .00001);
     assert(evaluateRPN("2 5 + 2 - 8 9 + +") == 22);
     assert(evaluateRPN (" 1 2 +")== 3);
     cout << "All tests passed!" << endl;
