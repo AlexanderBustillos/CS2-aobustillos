@@ -17,3 +17,15 @@ Lab3 Fraction Calculator
 {
 This Lab was very fun, it was easy once you understand how to access the fractions and which fraction numerator and denominator is which, once you grasp the concept making the calculator is very easy and its simple, this project helped me understand even more on how to access functions of sepcific class types. The project was also cool because of the override functions, the cout statements and the + - being changed to be a function was very interesting. This fraction calculator lets you input two fractions and then ouputs the two fractions added, subtracted, multplied and divided, all the test cases pass and the code is a little rough but it works well and is very easy to read, meaning i deserve a 100/100.
 }
+HW2
+{
+    100/100
+}
+Lab4
+{
+    100/100
+}
+Lab5
+{
+    Not done
+}

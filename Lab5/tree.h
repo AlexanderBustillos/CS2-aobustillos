@@ -34,10 +34,12 @@ BST<T1>::~BST()
 template <class T1>
 void BST<T1>::destroyTree(Node<T1>* root)
 {
+    // if there is nothing in the root then return/do nothing
     if(_root == nullptr)
     {
     return;
     }
+    //Very cool recursion, if there IS something in the root then you call to delete the left side of the root and the right side of the roo then deleteing the root
     destroyTree(root->getLeft());
     destroyTree(root->getRight());
     delete root;
@@ -47,7 +49,7 @@ void BST<T1>::destroyTree(Node<T1>* root)
 template <class T1>
 void BST<T1>::remove(T1 data)
 {
-    _root = remove(data);
+    _root = removeData(_root, data);
     return;
 }
 
@@ -59,7 +61,7 @@ void BST<T1>::remove(T1 data)
 template <class T1>
 Node<T1> *BST<T1>::removeData(Node<T1> *root, T1 data)
 {
-       if (root == nullptr)
+          if (root == nullptr)
     {
         return root;
     }
@@ -76,22 +78,24 @@ Node<T1> *BST<T1>::removeData(Node<T1> *root, T1 data)
     {
         if (root->getLeft() == nullptr)
         {
-            Node<T1>* temp = root->getRight();
+            Node<T1> *temp = root->getRight();
             delete root;
             return temp;
         }
         else if (root->getRight() == nullptr)
         {
-            Node<T1>* temp = root->getLeft();
+            Node<T1> *temp = root->getLeft();
             delete root;
             return temp;
         }
-
-        // Node with two children: Get the inorder successor (smallest in the right subtree)
-        Node<T1>* temp = minVal(root->getRight());
-        root->setData(temp->getData());
-        root->setRight(removeData(root->getRight(), temp->getData()));
+        else
+        {
+            Node<T1> *temp = minVal(root->getRight());
+            root->setData(temp->getData());
+            root->setRight(removeData(root->getRight(), temp->getData()));
+        }
     }
+
     return root;
 }
 
@@ -130,7 +134,8 @@ Node<T1> *BST<T1>::searchData(Node<T1> *root, T1 data)
 template <class T1>
 bool BST<T1>::search(T1 data)
 {
-    if (searchData(_root, data) == data)
+    Node<T1>* result = searchData(_root, data);
+    if (result->getData() == data)
     {
         return true;
     }
@@ -149,7 +154,7 @@ void BST<T1>::inOrderPrint(Node<T1> *root)
 {
     if (root != nullptr)
     {
-        inOrderprint(root->getLeft());
+        inOrderPrint(root->getLeft());
         cout << root->getData()<< " ";
         inOrderPrint(root->getRight());
     }
