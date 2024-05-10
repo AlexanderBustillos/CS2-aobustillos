@@ -98,6 +98,7 @@ void test()
     assert(test2 == "12 31 32 35 41 51 59 77 80 83 ");
     assert(test3 == "10 16 19 39 47 52 64 70 84 92 ");
     cout << "All test cases passed" << endl;
+    //this part gives me a segmentation fault, im not sure if this is my fault or not, probably is
     delete myTree;
     delete myTree2;
     delete myTree3;

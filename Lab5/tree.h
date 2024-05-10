@@ -39,7 +39,8 @@ void BST<T1>::destroyTree(Node<T1>* root)
     {
     return;
     }
-    //Very cool recursion, if there IS something in the root then you call to delete the left side of the root and the right side of the roo then deleteing the root
+    //Very cool recursion, if there IS something in the root then you call to delete the left side of the root and the right side of the root then deleteing the root
+    // this means that technically the leafs of the root are not there own seperate roots with leafs.
     destroyTree(root->getLeft());
     destroyTree(root->getRight());
     delete root;
@@ -49,6 +50,7 @@ void BST<T1>::destroyTree(Node<T1>* root)
 template <class T1>
 void BST<T1>::remove(T1 data)
 {
+    // wrapper? updating root and removing thhe data
     _root = removeData(_root, data);
     return;
 }
@@ -60,28 +62,34 @@ void BST<T1>::remove(T1 data)
 // Don't forget to clean up your memory!
 template <class T1>
 Node<T1> *BST<T1>::removeData(Node<T1> *root, T1 data)
-{
-          if (root == nullptr)
+{   
+    // if the root is nothing then there is noting to do
+    if (root == nullptr)
     {
         return root;
     }
-
+    // the root that is passed in is the main root of the whole tree, so if data is smaller then that root then it MUST mean that we are going somewhere left
     if (data < root->getData())
     {
+        //now we are setting the left of the root to be removed, because we havnt found the data yet in the list
         root->setLeft(removeData(root->getLeft(), data));
     }
     else if (data > root->getData())
     {
+        // we are still looking for the data so we have to look on the right side incase its bigger
         root->setRight(removeData(root->getRight(), data));
     }
     else
     {
+        //for this section i used AI to get a outline
+        //if the left side of the root is equal to nullptr that means nothing is there, then we get the right side and return it
         if (root->getLeft() == nullptr)
         {
             Node<T1> *temp = root->getRight();
             delete root;
             return temp;
         }
+        //same thing if the right is nothing then we get the left side and return it
         else if (root->getRight() == nullptr)
         {
             Node<T1> *temp = root->getLeft();
@@ -90,9 +98,11 @@ Node<T1> *BST<T1>::removeData(Node<T1> *root, T1 data)
         }
         else
         {
-            Node<T1> *temp = minVal(root->getRight());
+            // we get the minimum value of the left side and set it to the temp, we then get the value of that data and set it to the root
+            //then the left side of the root is removed
+            Node<T1> *temp = minVal(root->getLeft());
             root->setData(temp->getData());
-            root->setRight(removeData(root->getRight(), temp->getData()));
+            root->setLeft(removeData(root->getLeft(), temp->getData()));
         }
     }
 
@@ -103,6 +113,8 @@ Node<T1> *BST<T1>::removeData(Node<T1> *root, T1 data)
 template <class T1>
 Node<T1> *BST<T1>::minVal(Node<T1> *root)
 {
+    //we get our node and go left, as long as the left leaf does not equal null ptr then we an keep walking the left side of the tree untill we get a 
+    // nullptr, because we know once we  get null ptr thats the last leaf and the smallest, then we return that value
     Node<T1>* current = root;
     while(current->getLeft() != nullptr)
     {
@@ -115,17 +127,22 @@ Node<T1> *BST<T1>::minVal(Node<T1> *root)
 template <class T1>
 Node<T1> *BST<T1>::searchData(Node<T1> *root, T1 data)
 {
-  if (root == nullptr || root->getData() == data)
+    // if the root is a null ptr we dont do anything, or if the root is equal to data then we already have our node!
+    if (root == nullptr || root->getData() == data)
     {
         return root;
     }
-
+    // this uses the same logic as one of the previous functions, if the data is less then the root then we know that its going to be left of the main root
     if (data < root->getData())
     {
+        // I love recursion !!!!!!!!!!!
+        // we return the root that we are current at,(left of the main root) and put that into search data, if that root is equal to data then it instantly return back the root and 
+        // it returns the root here aswell
         return searchData(root->getLeft(), data);
     }
     else
     {
+        // same thing here but if its not equal or smaller then it has to be bigger so we go to the right
         return searchData(root->getRight(), data);
     }
 }
@@ -134,6 +151,7 @@ Node<T1> *BST<T1>::searchData(Node<T1> *root, T1 data)
 template <class T1>
 bool BST<T1>::search(T1 data)
 {
+    //Once all the awesome recursion happens we get the result and check if its true, it should be true because the code works, i think
     Node<T1>* result = searchData(_root, data);
     if (result->getData() == data)
     {
@@ -152,6 +170,7 @@ bool BST<T1>::search(T1 data)
 template <class T1>
 void BST<T1>::inOrderPrint(Node<T1> *root)
 {
+    // as long as root equals something we can print the function by going left first then right and a space in the middle
     if (root != nullptr)
     {
         inOrderPrint(root->getLeft());
@@ -165,6 +184,7 @@ void BST<T1>::inOrderPrint(Node<T1> *root)
 template <class T1>
 void BST<T1>::inOrder()
 {
+    //wrapper???????
     inOrderPrint(_root);
 }
 
@@ -174,23 +194,27 @@ void BST<T1>::inOrder()
 template <class T1>
 Node<T1> *BST<T1>::insertNode(Node<T1> *root, T1 data)
 {
+    //if the root is empty then lets do something about it and make a root
     if(root == nullptr)
     {
      Node<T1>* _root = new Node<T1>();
      _root->setData(data);
      return _root;
     }
+    //if the data is smaller then the root then insert the data into the left side of the root
      if (data < root->getData())
     {
         root->setLeft(insertNode(root->getLeft(), data));
     }
+    //same thing but for the right side if its better
     else if (data > root->getData())
     {
         root->setRight(insertNode(root->getRight(), data));
     }
+    //if the number is the same then just say it is
     else if(data == root->getData())
     {
-        cout << "Duplicate data" << endl;
+        cout << "Already inputed" << endl;
     }
 
     return root;
@@ -200,11 +224,13 @@ Node<T1> *BST<T1>::insertNode(Node<T1> *root, T1 data)
 template <class T1>
 void BST<T1>::insert(T1 data)
 {
+    // i tried getting fancy here but i didnt know what i was doing
     // if( _root ==  nullptr)
     // {
     //     // Node<T1>* _root = new Node<T1>();
     //     Node<T1>* _root = nullptr;
 
     // }
+    // wrapper and updating root
     _root= insertNode(_root, data);
 }
