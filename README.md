@@ -27,5 +27,10 @@ Lab4
 }
 Lab5
 {
-   I used chat gpt to understnad how to do and start some of the code, but majority was does done by me and getting help from others. 100/100
+   I used chat gpt to understnad how to do and start some of the code, but majority was does done by me and getting help from others.Majority of the code was very easy to understand, the biggest trouble was with remove data and insert node, keeping track of the node you have and recursion made things very difficult and caused me a lot of trouble, aside from tbose two the rest of the code was very easy to do and understand. 100/100
+}
+Final 
+{
+This final was very simple, the only hard part was operant++ and increiment , for operant ++ i used chat gpt to understand why Word temp(*this) works and how to impliment it correctly, i figured out that you are making a new word that just copies te current word you have, aside from those two the other segments were very simple and easy.
+100/100.
 }
